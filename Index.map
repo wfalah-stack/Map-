@@ -1,0 +1,67 @@
+
+<section id="local-farms" style="background:#f5f2e8;padding:30px;border-radius:20px;color:#414b30;font-family:Arial,sans-serif;">
+
+<h2>Find Local Farms</h2>
+
+<p>Explore local farms and discover alternatives to factory-farmed food. Support local farmers and make more informed food choices.</p>
+
+<form onsubmit="searchFarms();return false;">
+
+<input id="farmLocation" type="text"
+placeholder="Enter your city or ZIP code"
+value="Tacoma, WA"
+required
+style="padding:12px;border:1px solid #89936b;border-radius:10px;width:90%;margin-bottom:12px;">
+
+<select id="farmCategory"
+style="padding:12px;border-radius:10px;width:90%;margin-bottom:12px;">
+<option value="local farms">All local farms</option>
+<option value="pasture raised meat farms">Pasture-raised meat</option>
+<option value="free range egg farms">Free-range eggs</option>
+<option value="organic produce farms">Organic produce</option>
+<option value="farm tours">Farm tours and field trips</option>
+<option value="farmers markets">Farmers markets</option>
+</select>
+
+<button type="submit"
+style="background:#596744;color:white;padding:14px 25px;border:0;border-radius:25px;cursor:pointer;">
+Find Farms
+</button>
+
+</form>
+
+<iframe id="farmMap"
+title="Local farms map"
+src="https://maps.google.com/maps?q=local%20farms%20Tacoma%20WA&output=embed"
+width="100%" height="450"
+style="border:0;border-radius:15px;margin-top:20px;"
+loading="lazy"
+allowfullscreen>
+</iframe>
+
+<a id="farmDirections"
+href="https://www.google.com/maps/search/?api=1&query=local+farms+Tacoma+WA"
+target="_blank" rel="noopener"
+style="display:inline-block;background:#596744;color:white;padding:12px 22px;border-radius:25px;margin-top:15px;text-decoration:none;">
+Explore on Google Maps
+</a>
+
+<p style="font-size:13px;">
+Contact individual farms to confirm their animal welfare practices, certifications, products and visiting hours.
+</p>
+
+</section>
+
+<script>
+function searchFarms() {
+  const location = document.getElementById("farmLocation").value.trim();
+  const category = document.getElementById("farmCategory").value;
+  const query = encodeURIComponent(category + " near " + location);
+
+  document.getElementById("farmMap").src =
+    "https://maps.google.com/maps?q=" + query + "&output=embed";
+
+  document.getElementById("farmDirections").href =
+    "https://www.google.com/maps/search/?api=1&query=" + query;
+}
+</script>
